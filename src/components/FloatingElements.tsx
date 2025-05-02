@@ -41,9 +41,12 @@ const FloatingElements = () => {
       });
     });
 
+    // Store a copy of the current elements for cleanup
+    const currentElements = [...elementsRef.current];
+
     return () => {
-      // Cleanup
-      elementsRef.current.forEach((el) => {
+      // Cleanup using the stored copy
+      currentElements.forEach((el) => {
         gsap.killTweensOf(el);
       });
     };

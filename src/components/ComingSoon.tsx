@@ -94,7 +94,7 @@ const ComingSoon = () => {
       </h1>
 
       <p ref={subtitleRef} className="text-xl sm:text-2xl mb-10 max-w-2xl parallax-element">
-        We're crafting something extraordinary for the digital universe. Stay tuned.
+        We&apos;re crafting something extraordinary for the digital universe. Stay tuned.
       </p>
 
       <form ref={formRef} className="flex flex-col sm:flex-row gap-2 w-full max-w-md parallax-element relative z-10">

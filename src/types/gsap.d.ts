@@ -2,23 +2,23 @@
 
 declare module 'gsap' {
   interface GSAPStatic {
-    registerPlugin(...args: any[]): void;
+    registerPlugin(...args: gsap.Plugin[]): void;
   }
 
   interface GSAPTimeline {
     from(
-      targets: any,
+      targets: Element | Element[] | string,
       vars: gsap.TweenVars,
       position?: string | number
     ): gsap.core.Timeline;
     fromTo(
-      targets: any,
+      targets: Element | Element[] | string,
       fromVars: gsap.TweenVars,
       toVars: gsap.TweenVars,
       position?: string | number
     ): gsap.core.Timeline;
     to(
-      targets: any,
+      targets: Element | Element[] | string,
       vars: gsap.TweenVars,
       position?: string | number
     ): gsap.core.Timeline;
@@ -26,5 +26,5 @@ declare module 'gsap' {
 }
 
 declare module 'gsap/ScrollTrigger' {
-  export const ScrollTrigger: any;
+  export const ScrollTrigger: gsap.Plugin;
 } 

@@ -89,7 +89,7 @@ export default function Home() {
       let wWidth: number = 0;
       let wHeight: number = 0;
       
-      let noiseData: ImageData[] = [];
+      const noiseData: ImageData[] = [];
       let frame = 0;
       
       let loopTimeout: number | null = null;
