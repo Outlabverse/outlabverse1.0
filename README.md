@@ -1,3 +1,20 @@
+# Outlabverse
+
+Outlabverse is an elegant landing page for an upcoming digital universe platform. The project features a beautifully animated interface with custom cursor effects, smooth GSAP animations, and a minimalist aesthetic with amber and earth tone accents.
+
+## Features
+
+- Interactive custom cursor with hover effects
+- Animated text reveals and transitions using GSAP
+- Subtle noise/grain background effect
+- Email subscription form for launch notifications
+- Responsive design for all device sizes
+- Elegant typography with carefully selected fonts
+
+## About Outlabverse
+
+Outlabverse is creating a new dimension for the digital world. This project serves as a coming-soon page to capture interest before the full launch of the platform.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 50" fill="none">
+  <!-- Minimal letter 'O' -->
+  <circle cx="20" cy="25" r="15" stroke="#92400E" stroke-width="1.5" fill="none" />
+  
+  <!-- Stylized 'V' -->
+  <path d="M45 10 L60 40 L75 10" stroke="#92400E" stroke-width="1.5" fill="none" />
+</svg> 
