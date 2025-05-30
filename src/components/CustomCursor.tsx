@@ -1,133 +1,77 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import React, { useRef } from 'react';
+import { useCustomCursor } from '@/hooks/useCustomCursor';
 
-const CustomCursor = () => {
+const CustomCursor: React.FC = () => {
+  // Create refs internally
   const cursorRef = useRef<HTMLDivElement>(null);
-  const followerRef = useRef<HTMLDivElement>(null);
+  const cursorDotRef = useRef<HTMLDivElement>(null);
   
-  useEffect(() => {
-    const cursor = cursorRef.current;
-    const follower = followerRef.current;
-    
-    if (!cursor || !follower) return;
-    
-    const onMouseMove = (e: MouseEvent) => {
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1,
-        ease: 'power2.out',
-      });
-      
-      gsap.to(follower, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.5,
-        ease: 'power2.out',
-      });
-    };
-    
-    const onMouseDown = () => {
-      gsap.to(cursor, {
-        scale: 0.8,
-        duration: 0.2,
-      });
-      
-      gsap.to(follower, {
-        scale: 1.4,
-        duration: 0.2,
-      });
-    };
-    
-    const onMouseUp = () => {
-      gsap.to(cursor, {
-        scale: 1,
-        duration: 0.2,
-      });
-      
-      gsap.to(follower, {
-        scale: 1,
-        duration: 0.2,
-      });
-    };
+  // Initialize the custom cursor hook
+  useCustomCursor(cursorRef, cursorDotRef);
 
-    const onMouseEnterLink = () => {
-      gsap.to(cursor, {
-        scale: 1.5,
-        background: 'rgba(255, 255, 255, 0.2)',
-        border: 'none',
-        duration: 0.2,
-      });
-      
-      gsap.to(follower, {
-        scale: 0,
-        duration: 0.2,
-      });
-    };
-    
-    const onMouseLeaveLink = () => {
-      gsap.to(cursor, {
-        scale: 1,
-        background: 'rgba(255, 255, 255, 0)',
-        border: '1px solid rgba(255, 255, 255, 0.4)',
-        duration: 0.2,
-      });
-      
-      gsap.to(follower, {
-        scale: 1,
-        duration: 0.2,
-      });
-    };
-    
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mousedown', onMouseDown);
-    document.addEventListener('mouseup', onMouseUp);
-    
-    // Add event listeners to clickable elements
-    const links = document.querySelectorAll('a, button, input, [role="button"]');
-    links.forEach(link => {
-      link.addEventListener('mouseenter', onMouseEnterLink);
-      link.addEventListener('mouseleave', onMouseLeaveLink);
-    });
-    
-    // Hide default cursor
-    document.body.style.cursor = 'none';
-    
-    return () => {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mousedown', onMouseDown);
-      document.removeEventListener('mouseup', onMouseUp);
-      
-      links.forEach(link => {
-        link.removeEventListener('mouseenter', onMouseEnterLink);
-        link.removeEventListener('mouseleave', onMouseLeaveLink);
-      });
-      
-      // Restore default cursor
-      document.body.style.cursor = 'auto';
-    };
-  }, []);
-  
   return (
     <>
       <div 
         ref={cursorRef} 
-        className="cursor fixed w-4 h-4 border border-white/40 rounded-full pointer-events-none z-50 -ml-2 -mt-2"
-        style={{ 
-          mixBlendMode: 'difference',
-          willChange: 'transform'
-        }}
-      />
+        className="cursor-main fixed pointer-events-none w-10 h-10 -translate-x-1/2 -translate-y-1/2 z-50 mix-blend-difference"
+      >
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="19" stroke="white" strokeWidth="1" strokeDasharray="2 2" className="animate-spin-slow" />
+          <circle cx="20" cy="20" r="5" stroke="white" strokeWidth="1" />
+          <line x1="20" y1="0" x2="20" y2="10" stroke="white" strokeWidth="1" />
+          <line x1="20" y1="30" x2="20" y2="40" stroke="white" strokeWidth="1" />
+          <line x1="0" y1="20" x2="10" y2="20" stroke="white" strokeWidth="1" />
+          <line x1="30" y1="20" x2="40" y2="20" stroke="white" strokeWidth="1" />
+        </svg>
+      </div>
+      
       <div 
-        ref={followerRef} 
-        className="cursor-follower fixed w-8 h-8 bg-white/10 rounded-full pointer-events-none z-40 -ml-4 -mt-4"
-        style={{ 
-          mixBlendMode: 'difference',
-          willChange: 'transform'
-        }}
-      />
+        ref={cursorDotRef} 
+        className="cursor-dot fixed pointer-events-none w-2 h-2 rounded-full bg-white -translate-x-1/2 -translate-y-1/2 z-50 opacity-50"
+      ></div>
+      
+      {/* Global styles for cursor animations */}
+      <style jsx global>{`
+        html, body {
+          cursor: none;
+        }
+        
+        .cursor-main {
+          transition: transform 0.1s ease;
+        }
+        
+        .cursor-main svg {
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      opacity 0.3s ease;
+        }
+        
+        .cursor-hover .cursor-main svg {
+          transform: scale(1.5);
+        }
+        
+        .cursor-hover {
+          transform: translate(-50%, -50%) scale(1.2);
+        }
+        
+        .cursor-dot-hover {
+          opacity: 0;
+        }
+        
+        .cursor-drag .cursor-main svg {
+          transform: scale(0.8);
+        }
+        
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        .animate-spin-slow {
+          animation: spin-slow 12s linear infinite;
+        }
+      `}</style>
     </>
   );
 };

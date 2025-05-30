@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 
 interface Particle {
   x: number;
@@ -16,7 +16,8 @@ const ParticleCanvas = () => {
   const particles = useRef<Particle[]>([]);
   const animationRef = useRef<number>(0);
 
-  const colors = ['#1E2A45', '#2A3F66', '#3A547F', '#5272A6'];
+  // Use useMemo to prevent the colors array from being recreated on each render
+  const colors = useMemo(() => ['#1E2A45', '#2A3F66', '#3A547F', '#5272A6'], []);
   
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -83,7 +84,7 @@ const ParticleCanvas = () => {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationRef.current);
     };
-  }, [colors]);
+  }, [colors]); // Now colors is memoized and won't cause unnecessary re-renders
 
   return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10" />;
 };
