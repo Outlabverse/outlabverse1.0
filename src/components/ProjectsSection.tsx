@@ -52,7 +52,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       {/* Section heading with animated line */}
       <div className="container mx-auto px-6 md:px-12 mb-16 flex flex-col md:flex-row items-start">
         <div className="w-full md:w-1/3 mb-8 md:mb-0 relative flex items-center">
-          <div ref={lineRef} className="hidden md:block w-px h-0 bg-gradient-to-b from-[#ff2d55] to-[#5e17eb] absolute top-0 left-0"></div>
+                        <div ref={lineRef} className="hidden md:block w-px h-0 bg-gradient-to-b from-[#00d4aa] to-[#0066ff] absolute top-0 left-0"></div>
           <div className="md:pl-12">
             <div className="overflow-hidden mb-3">
               <h2 ref={titleRef} className="text-3xl md:text-4xl font-bold">

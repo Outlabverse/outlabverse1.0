@@ -43,12 +43,12 @@ const Preloader: React.FC<PreloaderProps> = ({ preloaderRef, onLoadComplete }) =
   return (
     <div 
       ref={preloaderRef}
-      className="fixed inset-0 z-50 bg-[#030014] flex flex-col items-center justify-center"
+      className="fixed inset-0 z-50 bg-[#0a0f0d] flex flex-col items-center justify-center"
       style={{ pointerEvents: 'all' }}
     >
       {/* Background effects */}
-      <div className="absolute top-[30%] left-[20%] w-[300px] h-[300px] rounded-full opacity-20 bg-gradient-to-r from-[#ff2d55] to-[#5e17eb] blur-[100px] animate-[pulse_8s_ease-in-out_infinite]"></div>
-      <div className="absolute bottom-[20%] right-[20%] w-[400px] h-[400px] rounded-full opacity-15 bg-gradient-to-r from-[#5e17eb] to-[#ff2d55] blur-[120px] animate-[pulse_12s_ease-in-out_2s_infinite]"></div>
+      <div className="absolute top-[30%] left-[20%] w-[300px] h-[300px] rounded-full opacity-20 bg-gradient-to-r from-[#00d4aa] to-[#0066ff] blur-[100px] animate-[pulse_8s_ease-in-out_infinite]"></div>
+      <div className="absolute bottom-[20%] right-[20%] w-[400px] h-[400px] rounded-full opacity-15 bg-gradient-to-r from-[#0066ff] to-[#00d4aa] blur-[120px] animate-[pulse_12s_ease-in-out_2s_infinite]"></div>
       
       {/* Logo */}
       <div className="mb-12 relative">
@@ -61,7 +61,7 @@ const Preloader: React.FC<PreloaderProps> = ({ preloaderRef, onLoadComplete }) =
       
       {/* Progress bar */}
       <div className="w-64 h-[2px] bg-white/10 rounded-full overflow-hidden mb-6 relative">
-        <div className="preloader-progress h-full w-0 bg-gradient-to-r from-[#ff2d55] to-[#5e17eb] rounded-full"></div>
+        <div className="preloader-progress h-full w-0 bg-gradient-to-r from-[#00d4aa] to-[#0066ff] rounded-full"></div>
       </div>
       
       {/* Text */}
@@ -71,9 +71,9 @@ const Preloader: React.FC<PreloaderProps> = ({ preloaderRef, onLoadComplete }) =
       
       {/* Stats - showing random percentages that increment */}
       <div className="absolute bottom-8 flex justify-center gap-8 text-xs text-white/40">
-        <div>Assets: <span className="text-[#ff2d55]">100%</span></div>
-        <div>Modules: <span className="text-[#ff2d55]">100%</span></div>
-        <div>Environment: <span className="text-[#ff2d55]">100%</span></div>
+        <div>Assets: <span className="text-[#00d4aa]">100%</span></div>
+        <div>Modules: <span className="text-[#00d4aa]">100%</span></div>
+        <div>Environment: <span className="text-[#00d4aa]">100%</span></div>
       </div>
     </div>
   );

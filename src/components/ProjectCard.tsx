@@ -31,7 +31,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
         
         {/* Category tag */}
         <div className="absolute top-4 left-4 flex items-center gap-2 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-          <div className="w-2 h-2 rounded-full bg-[#ff2d55] animate-pulse"></div>
+                          <div className="w-2 h-2 rounded-full bg-[#00d4aa] animate-pulse"></div>
           <div className="text-xs text-white/80 uppercase tracking-wider">{project.category}</div>
         </div>
         

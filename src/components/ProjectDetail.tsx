@@ -151,13 +151,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectDetailRef, selecte
   return (
     <div 
       ref={projectDetailRef}
-      className="fixed inset-0 z-40 bg-[#030014]/95 backdrop-blur-md flex items-center justify-center overflow-auto"
+      className="fixed inset-0 z-40 bg-[#0a0f0d]/95 backdrop-blur-md flex items-center justify-center overflow-auto"
       onClick={onClose}
       style={{ display: selectedProject ? 'flex' : 'none' }}
     >
       {/* Background effects */}
-      <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full opacity-10 bg-gradient-to-r from-[#ff2d55] to-[#5e17eb] blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-[15%] right-[10%] w-[500px] h-[500px] rounded-full opacity-10 bg-gradient-to-r from-[#5e17eb] to-[#ff2d55] blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full opacity-10 bg-gradient-to-r from-[#00d4aa] to-[#0066ff] blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-[15%] right-[10%] w-[500px] h-[500px] rounded-full opacity-10 bg-gradient-to-r from-[#0066ff] to-[#00d4aa] blur-[120px] pointer-events-none"></div>
       
       {selectedProject ? (
         <div className="w-full h-full max-h-screen mx-auto p-4 md:p-8 lg:p-12 overflow-auto" onClick={(e) => e.stopPropagation()}>
@@ -204,7 +204,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectDetailRef, selecte
               sizes="100vw"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#030014]/50 to-transparent opacity-70"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f0d]/50 to-transparent opacity-70"></div>
           </div>
           
           {/* Info Cards */}
@@ -274,9 +274,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectDetailRef, selecte
             
             {/* Scroll indicators */}
             <div className="flex justify-center items-center gap-2 mt-4">
-              <div className={`w-16 h-1 rounded-full ${galleryScrollState.isAtStart ? 'bg-[#ff2d55]' : 'bg-white/20'}`}></div>
+              <div className={`w-16 h-1 rounded-full ${galleryScrollState.isAtStart ? 'bg-[#00d4aa]' : 'bg-white/20'}`}></div>
               <div className="w-1 h-1 rounded-full bg-white/20"></div>
-              <div className={`w-16 h-1 rounded-full ${galleryScrollState.isAtEnd ? 'bg-[#5e17eb]' : 'bg-white/20'}`}></div>
+              <div className={`w-16 h-1 rounded-full ${galleryScrollState.isAtEnd ? 'bg-[#0066ff]' : 'bg-white/20'}`}></div>
             </div>
           </div>
           

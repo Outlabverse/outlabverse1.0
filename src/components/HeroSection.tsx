@@ -17,18 +17,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   logoRef,
 }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [hoveredLink, setHoveredLink] = useState<number | null>(null);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  
   const navRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLDivElement>(null);
-  const [hoveredLink, setHoveredLink] = useState<number | null>(null);
   
   // Handle mouse movement for parallax effect
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX / window.innerWidth - 0.5,
-        y: e.clientY / window.innerHeight - 0.5
-      });
+      const x = (e.clientX / window.innerWidth - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      setMousePosition({ x, y });
     };
     
     window.addEventListener('mousemove', handleMouseMove);
@@ -82,17 +84,40 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     );
   }, []);
   
+  // Navbar scroll behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 10) {
+        // Always show navbar at top
+        setIsNavbarVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past 100px - hide navbar
+        setIsNavbarVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show navbar
+        setIsNavbarVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+  
   return (
     <section className="flex flex-col min-h-screen w-full relative z-10 overflow-hidden">
       {/* Navbar with liquid hover effect */}
-      <header className="fixed top-0 left-0 w-full px-8 md:px-16 py-6 flex justify-between items-center z-50 backdrop-blur-sm bg-[#030014]/50 border-b border-white/5">
+      <header className={`fixed top-0 left-0 w-full px-8 md:px-16 py-6 flex justify-between items-center z-50 backdrop-blur-md bg-gradient-to-b from-[#0a0f0d]/20 via-[#0a0f0d]/10 to-transparent transition-transform duration-300 ease-in-out ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div ref={logoRef} className="relative group">
           <div className="border-gradient w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
             <div className="border-gradient-content flex items-center justify-center w-full h-full">
               <span className="text-gradient font-bold text-xl">O</span>
             </div>
           </div>
-          <div className="absolute -inset-2 bg-[#5e17eb]/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute -inset-2 bg-[#00d4aa]/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
         
         <div ref={navRef} className="flex items-center">
@@ -106,7 +131,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 onMouseLeave={() => setHoveredLink(null)}
               >
                 <span className="relative z-10">{item}</span>
-                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#ff2d55] to-[#5e17eb] transform scale-x-0 origin-left transition-transform duration-300 ${hoveredLink === index ? 'scale-x-100' : ''}`}></span>
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#00d4aa] to-[#0066ff] transform scale-x-0 origin-left transition-transform duration-300 ${hoveredLink === index ? 'scale-x-100' : ''}`}></span>
               </a>
             ))}
           </nav>
@@ -132,8 +157,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           className="w-full md:w-1/2 md:pl-16 lg:pl-24 flex flex-col items-start space-y-8 md:pr-8"
         >
           <div className="inline-flex items-center border border-white/10 rounded-full px-4 py-1.5 text-xs text-white/60 backdrop-blur-sm gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#ff2d55] animate-pulse"></span>
-            Coming soon — <span className="text-[#ff2d55]">Q3 2025</span>
+            <span className="w-2 h-2 rounded-full bg-[#00d4aa] animate-pulse"></span>
+            Coming soon — <span className="text-[#00d4aa]">Q3 2025</span>
           </div>
           
           <div className="overflow-hidden">
@@ -169,10 +194,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 <input 
                   type="email" 
                   placeholder="Your email address" 
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#ff2d55] text-white placeholder:text-white/30 transition-all duration-300"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#00d4aa] text-white placeholder:text-white/30 transition-all duration-300"
                   required
                 />
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/20 group-focus-within:border-[#ff2d55] rounded-lg pointer-events-none transition-all duration-300"></div>
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/20 group-focus-within:border-[#00d4aa] rounded-lg pointer-events-none transition-all duration-300"></div>
               </div>
               
               <MagneticButton strength={0.5}>
@@ -181,7 +206,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   className="btn-modern text-sm relative overflow-hidden group"
                 >
                   <span className="relative z-10">Subscribe</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#ff2d55] to-[#5e17eb] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#00d4aa] to-[#0066ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
               </MagneticButton>
             </div>
@@ -226,14 +251,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 <div className="absolute inset-0 bg-gradient-to-br from-[#0e0e1a]/90 to-[#15091d]/90 backdrop-blur-md"></div>
                 
                 {/* Glowing accent */}
-                <div className="absolute top-[30%] right-[20%] w-32 h-32 bg-[#5e17eb]/20 rounded-full blur-2xl"></div>
-                <div className="absolute bottom-[20%] left-[30%] w-24 h-24 bg-[#ff2d55]/20 rounded-full blur-2xl"></div>
+                <div className="absolute top-[30%] right-[20%] w-32 h-32 bg-[#0066ff]/20 rounded-full blur-2xl"></div>
+                <div className="absolute bottom-[20%] left-[30%] w-24 h-24 bg-[#00d4aa]/20 rounded-full blur-2xl"></div>
                 
                 {/* Mockup UI elements */}
-                <div className="absolute top-0 left-0 w-full h-12 bg-[#0e0e1a]/80 backdrop-blur-sm flex items-center px-4 border-b border-white/5">
+                <div className="absolute top-0 left-0 w-full h-12 bg-[#0f1714]/80 backdrop-blur-sm flex items-center px-4 border-b border-white/5">
                   <div className="flex space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-[#ff2d55]"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#5e17eb]/50"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#00d4aa]"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#0066ff]/50"></div>
                     <div className="w-3 h-3 rounded-full bg-white/20"></div>
                   </div>
                   <div className="ml-4 h-6 w-40 bg-white/5 rounded"></div>
@@ -246,7 +271,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                     <div className="h-6 w-1/3 bg-white/10 mb-4 rounded"></div>
                     <div className="h-40 w-full bg-gradient-to-br from-black/40 to-black/10 mb-6 rounded-lg overflow-hidden relative border border-white/10">
                       {/* Glass card with content */}
-                      <div className="absolute inset-0 opacity-60 bg-gradient-to-r from-[#ff2d55]/10 to-[#5e17eb]/10"></div>
+                      <div className="absolute inset-0 opacity-60 bg-gradient-to-r from-[#00d4aa]/10 to-[#0066ff]/10"></div>
                       <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/10 border border-white/20"></div>
                       <div className="absolute top-4 left-16 right-4">
                         <div className="h-3 w-1/2 bg-white/20 mb-2 rounded"></div>
@@ -256,7 +281,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                       {/* Interactive elements */}
                       <div className="absolute bottom-4 left-4 right-4 flex justify-between">
                         <div className="h-8 w-20 bg-white/10 rounded-md border border-white/10"></div>
-                        <div className="h-8 w-8 bg-[#5e17eb]/30 rounded-md border border-[#5e17eb]/30"></div>
+                        <div className="h-8 w-8 bg-[#0066ff]/30 rounded-md border border-[#0066ff]/30"></div>
                       </div>
                     </div>
                   </div>
@@ -264,11 +289,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   {/* Card grid with depth */}
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div className="h-28 bg-black/20 rounded-lg border border-white/5 p-3 flex flex-col justify-between">
-                      <div className="w-8 h-8 rounded-md bg-[#ff2d55]/20 border border-[#ff2d55]/20"></div>
+                      <div className="w-8 h-8 rounded-md bg-[#00d4aa]/20 border border-[#00d4aa]/20"></div>
                       <div className="h-3 w-2/3 bg-white/10 rounded"></div>
                     </div>
                     <div className="h-28 bg-black/20 rounded-lg border border-white/5 p-3 flex flex-col justify-between">
-                      <div className="w-8 h-8 rounded-md bg-[#5e17eb]/20 border border-[#5e17eb]/20"></div>
+                      <div className="w-8 h-8 rounded-md bg-[#0066ff]/20 border border-[#0066ff]/20"></div>
                       <div className="h-3 w-2/3 bg-white/10 rounded"></div>
                     </div>
                   </div>
@@ -279,7 +304,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   <div className="h-4 w-2/3 bg-white/5 rounded"></div>
                   
                   {/* Bottom interactive element */}
-                  <div className="mt-auto h-10 bg-gradient-to-r from-[#ff2d55]/20 to-[#5e17eb]/20 rounded-lg border border-white/10 flex items-center justify-center">
+                  <div className="mt-auto h-10 bg-gradient-to-r from-[#00d4aa]/20 to-[#0066ff]/20 rounded-lg border border-white/10 flex items-center justify-center">
                     <div className="h-3 w-16 bg-white/20 rounded"></div>
                   </div>
                 </div>
@@ -289,7 +314,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="absolute -top-8 -right-8 w-16 h-16 border-gradient rounded-full overflow-hidden animate-spin-slow">
                 <div className="border-gradient-content"></div>
               </div>
-              <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-[#ff2d55] rounded-full blur-lg opacity-30"></div>
+              <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-[#00d4aa] rounded-full blur-lg opacity-30"></div>
               
               {/* Smaller floating elements for depth */}
               <div className="absolute top-[20%] -left-4 w-8 h-8 border border-white/20 rounded-md bg-white/5 backdrop-blur-sm transform rotate-12 animate-float"></div>

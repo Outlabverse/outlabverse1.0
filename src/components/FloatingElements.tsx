@@ -108,14 +108,14 @@ const FloatingElements: React.FC = () => {
         className="floating-element parallax-element absolute top-[15%] left-[10%] w-40 h-40 border border-white/10 rounded-full backdrop-blur-md opacity-30"
         data-depth="2"
       >
-        <div className="absolute inset-[2px] rounded-full bg-gradient-to-br from-[#ff2d55]/10 to-[#5e17eb]/10"></div>
+        <div className="absolute inset-[2px] rounded-full bg-gradient-to-br from-[#00d4aa]/10 to-[#0066ff]/10"></div>
       </div>
       
       <div 
         className="floating-element parallax-element absolute bottom-[20%] right-[15%] w-64 h-64 border border-white/10 rounded-full backdrop-blur-md opacity-20"
         data-depth="3"
       >
-        <div className="absolute inset-[2px] rounded-full bg-gradient-to-br from-[#5e17eb]/10 to-[#ff2d55]/10"></div>
+        <div className="absolute inset-[2px] rounded-full bg-gradient-to-br from-[#0066ff]/10 to-[#00d4aa]/10"></div>
       </div>
       
       {/* Smaller geometric shapes */}
@@ -123,14 +123,14 @@ const FloatingElements: React.FC = () => {
         className="floating-element parallax-element absolute top-[40%] right-[30%] w-24 h-24 border border-white/10 rounded-xl backdrop-blur-sm transform rotate-45 opacity-40"
         data-depth="6"
       >
-        <div className="absolute inset-[1px] rounded-xl bg-gradient-to-br from-[#0e0e1a]/50 to-[#15091d]/50"></div>
+        <div className="absolute inset-[1px] rounded-xl bg-gradient-to-br from-[#0f1714]/50 to-[#1a201d]/50"></div>
       </div>
       
       <div 
         className="floating-element parallax-element absolute bottom-[40%] left-[25%] w-16 h-16 border border-white/10 rounded-md backdrop-blur-sm transform rotate-12 opacity-30"
         data-depth="8"
       >
-        <div className="absolute inset-[1px] rounded-md bg-gradient-to-br from-[#15091d]/50 to-[#0e0e1a]/50"></div>
+        <div className="absolute inset-[1px] rounded-md bg-gradient-to-br from-[#1a201d]/50 to-[#0f1714]/50"></div>
       </div>
       
       {/* Small dots and particles */}
@@ -158,12 +158,12 @@ const FloatingElements: React.FC = () => {
       
       {/* Gradient accent blobs with blur */}
       <div 
-        className="floating-element absolute top-[25%] right-[20%] w-56 h-56 rounded-full opacity-20 bg-gradient-to-r from-[#ff2d55] to-[#5e17eb] blur-[60px]"
+        className="floating-element absolute top-[25%] right-[20%] w-56 h-56 rounded-full opacity-20 bg-gradient-to-r from-[#00d4aa] to-[#0066ff] blur-[60px]"
         style={{ zIndex: -5 }}
       ></div>
       
       <div 
-        className="floating-element absolute bottom-[35%] left-[15%] w-72 h-72 rounded-full opacity-15 bg-gradient-to-r from-[#5e17eb] to-[#ff2d55] blur-[80px]"
+        className="floating-element absolute bottom-[35%] left-[15%] w-72 h-72 rounded-full opacity-15 bg-gradient-to-r from-[#0066ff] to-[#00d4aa] blur-[80px]"
         style={{ zIndex: -5 }}
       ></div>
       

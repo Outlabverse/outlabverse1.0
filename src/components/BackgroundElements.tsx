@@ -62,8 +62,8 @@ const BackgroundElements: React.FC = () => {
         
         // Dynamic color based on position and time
         const hue = (star.hue + time * 15) % 360;
-        const colorStart = `hsla(${330 + hue}, 100%, 65%, ${star.opacity})`;
-        const colorEnd = `hsla(${270 + hue}, 100%, 65%, 0)`;
+        const colorStart = `hsla(${180 + hue}, 100%, 65%, ${star.opacity})`;
+        const colorEnd = `hsla(${200 + hue}, 100%, 65%, 0)`;
         
         // Create a radial gradient
         const gradient = ctx.createRadialGradient(
@@ -110,8 +110,8 @@ const BackgroundElements: React.FC = () => {
       <div className="noise" style={{ zIndex: -2 }}></div>
       
       {/* Gradient orbs/blobs - lower z-index */}
-      <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full opacity-20 bg-gradient-to-r from-[#ff2d55] to-[#5e17eb] blur-[80px] animate-[pulse_10s_ease-in-out_infinite]" style={{ zIndex: -10 }}></div>
-      <div className="absolute bottom-[15%] right-[10%] w-[500px] h-[500px] rounded-full opacity-15 bg-gradient-to-r from-[#5e17eb] to-[#ff2d55] blur-[100px] animate-[pulse_15s_ease-in-out_2s_infinite]" style={{ zIndex: -10 }}></div>
+      <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full opacity-20 bg-gradient-to-r from-[#00d4aa] to-[#0066ff] blur-[80px] animate-[pulse_10s_ease-in-out_infinite]" style={{ zIndex: -10 }}></div>
+      <div className="absolute bottom-[15%] right-[10%] w-[500px] h-[500px] rounded-full opacity-15 bg-gradient-to-r from-[#0066ff] to-[#00d4aa] blur-[100px] animate-[pulse_15s_ease-in-out_2s_infinite]" style={{ zIndex: -10 }}></div>
       
       {/* Grid overlay - lower z-index */}
       <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" 

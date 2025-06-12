@@ -84,7 +84,7 @@ export default function Home() {
   return (
     <div 
       ref={containerRef}
-      className="relative min-h-screen w-full bg-[#030014] text-[#f5f5f7] overflow-x-hidden transition-all duration-300 cursor-default"
+      className="relative min-h-screen w-full bg-[#0a0f0d] text-[#f8fafc] overflow-x-hidden transition-all duration-300 cursor-default"
     >
       {/* Preloader - show only when loading */}
       {isLoading && (
@@ -94,8 +94,8 @@ export default function Home() {
         />
       )}
       
-      {/* Simple background color gradient */}
-      <div className="fixed inset-0 bg-gradient-to-b from-[#0a0a1a] to-[#0f0522] -z-10"></div>
+      {/* Modern gradient background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-[#0f1714] via-[#0a0f0d] to-[#001a33] -z-10"></div>
       
       {/* Hero Section */}
       <HeroSection
