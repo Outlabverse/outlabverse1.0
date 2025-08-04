@@ -15,4 +15,5 @@ export interface Project {
   gallery?: string[];
   link?: string;
   duration?: string;
+  youtubeVideoId?: string;
 } 

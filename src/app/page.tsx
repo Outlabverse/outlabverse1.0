@@ -80,6 +80,19 @@ export default function Home() {
     // Initialize animations immediately
     requestAnimationFrame(initAnimations);
   };
+
+  // Prevent scrolling when loading
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    // Clean up in case component unmounts while loading
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isLoading]);
   
   return (
     <div 

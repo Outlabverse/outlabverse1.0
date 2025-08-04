@@ -280,6 +280,26 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectDetailRef, selecte
             </div>
           </div>
           
+          {/* YouTube Video Section */}
+          {selectedProject.youtubeVideoId && (
+            <div className="project-detail-video mb-12">
+              <h3 className="text-xl font-bold mb-6 text-white">Demo Video</h3>
+              <div 
+                className="relative w-full rounded-xl overflow-hidden border border-white/10 glass"
+                style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}
+              >
+                <iframe
+                  src={`https://www.youtube.com/embed/${selectedProject.youtubeVideoId}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                ></iframe>
+              </div>
+            </div>
+          )}
+          
           {/* Call to action */}
           <div className="project-detail-cta text-center mb-8">
             {selectedProject.link ? (

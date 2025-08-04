@@ -84,7 +84,7 @@ const SplitText = forwardRef<HTMLElement, SplitTextProps>(({
       ref={ref} 
       className={className}
     >
-      <div ref={containerRef} className="inline-flex flex-wrap">
+      <div ref={containerRef} className="inline-flex flex-wrap justify-center">
         {processText()}
       </div>
     </Component>

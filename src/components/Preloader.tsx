@@ -1,4 +1,5 @@
 import React, { useEffect, RefObject } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 
 interface PreloaderProps {
@@ -52,10 +53,15 @@ const Preloader: React.FC<PreloaderProps> = ({ preloaderRef, onLoadComplete }) =
       
       {/* Logo */}
       <div className="mb-12 relative">
-        <div className="border-gradient w-20 h-20 rounded-xl overflow-hidden flex items-center justify-center">
-          <div className="border-gradient-content flex items-center justify-center w-full h-full">
-            <span className="text-gradient font-bold text-4xl">O</span>
-          </div>
+        <div className="flex items-center justify-center">
+          <Image
+            src="/Outlabverse_logo.png"
+            alt="Outlabverse logo"
+            width={120}
+            height={120}
+            className="object-contain"
+            priority
+          />
         </div>
       </div>
       

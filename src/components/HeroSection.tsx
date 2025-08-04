@@ -1,4 +1,5 @@
 import React, { RefObject, useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import SplitText from './SplitText';
 import MagneticButton from './MagneticButton';
@@ -112,25 +113,35 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       {/* Navbar with liquid hover effect */}
       <header className={`fixed top-0 left-0 w-full px-8 md:px-16 py-6 flex justify-between items-center z-50 backdrop-blur-md bg-gradient-to-b from-[#0a0f0d]/20 via-[#0a0f0d]/10 to-transparent transition-transform duration-300 ease-in-out ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'}`}>
         <div ref={logoRef} className="relative group">
-          <div className="border-gradient w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-            <div className="border-gradient-content flex items-center justify-center w-full h-full">
-              <span className="text-gradient font-bold text-xl">O</span>
-            </div>
+          <div className="flex items-center justify-center">
+            <Image
+              src="/Outlabverse_logo.png"
+              alt="Outlabverse logo"
+              width={100}
+              height={100}
+              className="object-contain"
+              priority
+            />
           </div>
-          <div className="absolute -inset-2 bg-[#00d4aa]/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute -inset-1 bg-[#00d4aa]/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
         
         <div ref={navRef} className="flex items-center">
           <nav className="hidden md:flex items-center gap-10 mr-8">
-            {["About", "Projects", "Contact"].map((item, index) => (
+            {[
+              { name: "About", href: "/about" },
+              { name: "Projects", href: "/#projects" },
+              { name: "Services", href: "/services" },
+              { name: "Contact", href: "/contact" }
+            ].map((item, index) => (
               <a 
                 key={index}
-                href={`#${item.toLowerCase()}`} 
+                href={item.href} 
                 className="text-white/70 hover:text-white text-sm uppercase tracking-widest transition-colors relative overflow-hidden group"
                 onMouseEnter={() => setHoveredLink(index)}
                 onMouseLeave={() => setHoveredLink(null)}
               >
-                <span className="relative z-10">{item}</span>
+                <span className="relative z-10">{item.name}</span>
                 <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#00d4aa] to-[#0066ff] transform scale-x-0 origin-left transition-transform duration-300 ${hoveredLink === index ? 'scale-x-100' : ''}`}></span>
               </a>
             ))}
@@ -150,34 +161,34 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </header>
       
       {/* Main hero content */}
-      <div className="flex flex-col md:flex-row items-center justify-center w-full min-h-screen px-6 py-32 md:py-0">
+      <div className="flex flex-col md:flex-row items-center justify-start w-full min-h-screen px-6 py-32 md:py-0">
         {/* Left side content */}
         <div 
           ref={heroContentRef}
-          className="w-full md:w-1/2 md:pl-16 lg:pl-24 flex flex-col items-start space-y-8 md:pr-8"
+          className="w-full md:w-3/5 md:pl-8 lg:pl-16 flex flex-col items-start space-y-8 md:pr-8"
         >
           <div className="inline-flex items-center border border-white/10 rounded-full px-4 py-1.5 text-xs text-white/60 backdrop-blur-sm gap-2">
             <span className="w-2 h-2 rounded-full bg-[#00d4aa] animate-pulse"></span>
             Coming soon — <span className="text-[#00d4aa]">Q3 2025</span>
           </div>
           
-          <div className="overflow-hidden">
+          <div className="overflow-hidden text-left">
             <SplitText
               ref={titleRef as React.RefObject<HTMLHeadingElement>}
               text={<>
                 <span className="block text-gradient">Outlab</span>
                 <span className="block">verse</span>
               </>}
-              className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight"
+              className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-left"
               animationDelay={0.5}
             />
           </div>
           
-          <div className="overflow-hidden">
+          <div className="overflow-hidden text-left">
             <SplitText
               ref={subtitleRef as React.RefObject<HTMLParagraphElement>}
               text="Creating a new dimension for the digital world where innovation meets immersive experiences."
-              className="text-lg text-white/70 max-w-md"
+              className="text-lg text-white/70 max-w-md text-left"
               animationDelay={0.8}
               wordByWord
             />
@@ -185,9 +196,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           
           <form 
             ref={formRef}
-            className="w-full max-w-md mt-8 space-y-3"
+            className="w-full max-w-md mt-8 space-y-3 text-left"
           >
-            <p className="text-sm text-white/60 mb-4">Stay updated with our latest news</p>
+            <p className="text-sm text-white/60 mb-4 text-left">Stay updated with our latest news</p>
             
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="flex-1 relative group">
@@ -211,7 +222,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               </MagneticButton>
             </div>
             
-            <p className="text-xs text-white/40 mt-2">By signing up, you agree to our <a href="#" className="text-white/60 hover:text-white underline">Terms</a> and <a href="#" className="text-white/60 hover:text-white underline">Privacy Policy</a>.</p>
+            <p className="text-xs text-white/40 mt-2 text-left">By signing up, you agree to our <a href="#" className="text-white/60 hover:text-white underline">Terms</a> and <a href="#" className="text-white/60 hover:text-white underline">Privacy Policy</a>.</p>
           </form>
           
           <div className="flex items-center space-x-6 mt-6">
@@ -222,9 +233,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             ].map((social, index) => (
               <MagneticButton key={index} strength={0.3}>
                 <a 
-                  href="#" 
+                  href={
+                    social.name === 'Twitter' ? 'https://twitter.com/' :
+                    social.name === 'Instagram' ? 'https://instagram.com/' :
+                    social.name === 'Discord' ? 'https://discord.com/' : '#'
+                  }
                   aria-label={social.name} 
                   className="text-white/50 hover:text-white transition-colors relative group"
+                  target="_blank" rel="noopener noreferrer"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d={social.path} />
@@ -239,7 +255,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Right side 3D mockup/image */}
         <div 
           ref={heroImageRef}
-          className="w-full md:w-1/2 h-[400px] md:h-[600px] mt-12 md:mt-0 relative"
+          className="w-full md:w-2/5 h-[400px] md:h-[600px] mt-12 md:mt-0 relative"
           style={{
             transform: `translate3d(${mousePosition.x * -20}px, ${mousePosition.y * -20}px, 0px)`
           }}

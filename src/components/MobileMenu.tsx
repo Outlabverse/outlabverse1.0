@@ -124,11 +124,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         {/* Logo */}
         <div className="mt-8 mb-16">
           <Image
-            src="/outlabverse-logo.svg"
-            alt="outlabverse logo"
+            src="/Outlabverse_logo.png"
+            alt="Outlabverse logo"
             width={120}
             height={50}
-            className="h-8 w-auto"
+            className="h-8 w-auto object-contain"
           />
         </div>
         
@@ -149,7 +149,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             className="mt-8 px-8 py-4 bg-accent text-white hover:bg-accent/90 transition-colors duration-300 tracking-wider text-sm uppercase font-[family-name:var(--font-montserrat)]"
             onClick={onClose}
           >
-            Connect
+            <Link href="/contact" className="block w-full h-full">Connect</Link>
           </MagneticButton>
         </div>
         
