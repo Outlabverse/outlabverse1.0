@@ -24,7 +24,7 @@ export default function Home() {
   const formRef = useRef<HTMLFormElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const projectsSectionRef = useRef<HTMLDivElement>(null);
-  const projectDetailRef = useRef<HTMLDivElement>(null);
+  const projectDetailRef = useRef<HTMLDivElement>(null); 
   const preloaderRef = useRef<HTMLDivElement>(null);
   
   // State
