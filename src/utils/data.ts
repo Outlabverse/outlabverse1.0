@@ -52,7 +52,7 @@ export const projects: Project[] = [
     id: 3,
     title: 'PetalScan',
     description: 'Interactive mobile application for flower and architectural element identification in Singapore Botanic Gardens using AI.',
-    image: '/images/projects/4/main.png',
+    image: '/images/projects/3/main.png',
     category: 'Mobile App Development',
     link: 'https://aungpyaesoebgs.wixstudio.com/petalscan',
     year: '2025',
@@ -63,14 +63,14 @@ export const projects: Project[] = [
     team: ['Mobile App Developers', 'ML Engineers', 'UX/UI Designers', 'Backend Engineers', 'Data Scientists'],
     location: 'Singapore',
     galleryImages: [
-      '/images/projects/4/gallery7.png',
-      '/images/projects/4/gallery8.png',
-      '/images/projects/4/gallery9.png',
-      '/images/projects/4/gallery1.png',
-      '/images/projects/4/gallery3.png',
-      '/images/projects/4/gallery4.png',
-      '/images/projects/4/gallery5.png',
-      '/images/projects/4/gallery6.png',
+      '/images/projects/3/gallery7.png',
+      '/images/projects/3/gallery8.png',
+      '/images/projects/3/gallery9.png',
+      '/images/projects/3/gallery1.png',
+      '/images/projects/3/gallery3.png',
+      '/images/projects/3/gallery4.png',
+      '/images/projects/3/gallery5.png',
+      '/images/projects/3/gallery6.png',
     ]
   }
 ]; 
